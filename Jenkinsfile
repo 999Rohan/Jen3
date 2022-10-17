@@ -8,6 +8,7 @@ pipeline {
                  pwd
                  ls
                  echo "this is build stage"
+                 sleep 2
            '''  
           }
         }
@@ -26,7 +27,8 @@ pipeline {
     stage('TEST2') {
           steps {
              sh '''
-             echo "1234 sdfgh fghj 789" 
+             echo "1234 sdfgh fghj 789"
+             sleep 3 
             '''
           } 
         }
