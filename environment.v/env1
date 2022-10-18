@@ -1,7 +1,7 @@
 pipeline {
     agent none
 
-    environment {     #env variables names in caps
+    environment {    
          BRANCH = 'master'
          GIT_REPO = 'https://github.com/999Rohan/Jen3.git'
     }
