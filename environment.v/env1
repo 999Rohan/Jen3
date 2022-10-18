@@ -2,8 +2,8 @@ pipeline {
     agent none
 
     environment {     #env variables names in caps
-         BRANCH='master'
-         GIT_REPO=''
+         BRANCH ='master'
+         GIT_REPO ='https://github.com/999Rohan/Jen3.git'
 
     }
 
@@ -11,6 +11,7 @@ pipeline {
         stage('BUILD') {
           agent { label 'slave1' }
           steps {
+             git_branch: $BRANCH, url: $GIT_REPO
              sh '''
                  #!/bin/bash
                  pwd
@@ -31,13 +32,16 @@ pipeline {
             agent { label 'slave2' }
             steps {
                 sh 'echo "this is test1 stage"'
+                sh 'sleep 2'
             }  
         }
         stage('TEST2') {
-            agent any
+            agent { label 'master' }
             steps {
                 sh '''
                 echo "1234 sdfgh fghj 789" 
+                echo "this is test2 stage"
+                sleep2
                 '''
             } 
         }
