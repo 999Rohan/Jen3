@@ -22,26 +22,22 @@ pipeline {
         }
 
         stage('TESTING') {
-           parallel {
-              stage('TEST') {
-                  parallel {
-                      stage('TEST1') {
-                          agent { label 'slave2' }
-                            steps {
-                                sh 'echo "this is test1 stage"'
-                            }  
-                        }
-                      stage('TEST2') {
-                          agent any
-                            steps {
-                                sh '''
-                                echo "1234 sdfgh fghj 789" 
-                                '''
-                            } 
-                      }
-                  }
-              } 
-           }
-        }            
+            parallel {
+                stage('TEST1') {
+                    agent { label 'slave2' }
+                      steps {
+                          sh 'echo "this is test1 stage"'
+                      }  
+                }
+                stage('TEST2') {
+                    agent any
+                      steps {
+                          sh '''
+                          echo "1234 sdfgh fghj 789" 
+                          '''
+                      } 
+                }
+            }
+        }        
     }
 }
