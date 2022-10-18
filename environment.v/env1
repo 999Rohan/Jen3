@@ -1,0 +1,45 @@
+pipeline {
+    agent none
+
+    environment {     #env variables names in caps
+         BRANCH='master'
+         GIT_REPO=''
+
+    }
+
+    stages {
+        stage('BUILD') {
+          agent { label 'slave1' }
+          steps {
+             sh '''
+                 #!/bin/bash
+                 pwd
+                 ls
+                 echo "this is build stage"
+           '''  
+          }
+        }
+        stage('DEPLOY') {
+            agent any
+            steps {
+                echo 'this is deploy stage'
+                sh 'echo bla'
+                sh '''echo "gfhgf vjg jhfjhf"'''
+            }  
+        }
+        stage('TEST1') {
+            agent { label 'slave2' }
+            steps {
+                sh 'echo "this is test1 stage"'
+            }  
+        }
+        stage('TEST2') {
+            agent any
+            steps {
+                sh '''
+                echo "1234 sdfgh fghj 789" 
+                '''
+            } 
+        }
+    }
+}
