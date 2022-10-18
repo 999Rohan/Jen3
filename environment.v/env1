@@ -10,7 +10,7 @@ pipeline {
         stage('BUILD') {
           agent { label 'slave1' }
           steps {
-             git_branch: $BRANCH, url: $GIT_REPO
+             git branch: $BRANCH, url: $GIT_REPO
              sh '''
                  #!/bin/bash
                  pwd
